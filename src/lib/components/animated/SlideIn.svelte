@@ -3,13 +3,16 @@
   import { fly } from 'svelte/transition';
   import { browser } from '$app/environment';
   
-  export let delay = 0;
-  export let duration = 400;
-  export let direction: 'left' | 'right' | 'top' | 'bottom' = 'left';
-  export let threshold = 0.1;
+  let { delay = 0, duration = 400, direction = 'left', threshold = 0.1, children } = $props<{
+    delay?: number,
+    duration?: number,
+    direction?: 'left' | 'right' | 'top' | 'bottom',
+    threshold?: number,
+    children: any
+  }>();
   
-  let visible = false;
-  let element: HTMLElement;
+  let visible = $state(false);
+  let element = $state<HTMLElement | null>(null);
   
   const getTransform = () => {
     switch (direction) {
@@ -59,11 +62,11 @@
 <div bind:this={element} class="slide-container">
   {#if visible}
     <div transition:fly={{ ...getTransform(), duration }}>
-      <slot />
+      {@render children()}
     </div>
   {:else}
     <div style="opacity: 0">
-      <slot />
+      {@render children()}
     </div>
   {/if}
 </div>

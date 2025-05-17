@@ -3,7 +3,7 @@
   import { browser } from '$app/environment';
   
   // Props using Runes
-  let { delay = 0, duration = 400, threshold = 0.1 } = $props();
+  let { delay = 0, duration = 400, threshold = 0.1, children } = $props();
   
   // State with Runes
   let visible = $state(false);
@@ -50,11 +50,11 @@
 <div bind:this={element} class="fade-container">
   {#if visible}
     <div transition:fade={{ duration }}>
-      <slot />
+      {@render children()}
     </div>
   {:else}
     <div style="opacity: 0">
-      <slot />
+      {@render children()}
     </div>
   {/if}
 </div>

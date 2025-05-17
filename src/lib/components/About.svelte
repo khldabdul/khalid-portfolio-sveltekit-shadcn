@@ -2,28 +2,28 @@
   import { aboutInfo } from '$lib/data/about';
   import FadeIn from '$lib/components/animated/FadeIn.svelte';
   import SlideIn from '$lib/components/animated/SlideIn.svelte';
-  import { Code2, Award, Users, LightbulbIcon } from 'lucide-svelte';
+  import Icon from "@iconify/svelte";
   
   const { longBio } = aboutInfo;
   
   const highlights = [
     {
-      icon: Code2,
+      icon: "mdi:code-brackets",
       title: "Automation Expert",
       description: "Skilled in developing efficient test automation frameworks with Playwright and Cypress"
     },
     {
-      icon: Award,
+      icon: "mdi:trophy-award",
       title: "Quality Champion",
       description: "Established quality standards and best practices across multiple organizations"
     },
     {
-      icon: Users,
+      icon: "mdi:account-group",
       title: "Team Leader",
       description: "Experienced in mentoring and leading QA teams to meet organizational objectives"
     },
     {
-      icon: LightbulbIcon,
+      icon: "mdi:lightbulb-on",
       title: "Innovator",
       description: "Integration of AI solutions for more efficient testing processes and improved coverage"
     }
@@ -52,9 +52,9 @@
       <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
         {#each highlights as highlight, i}
           <SlideIn direction="right" delay={200 + (i * 100)}>
-            <div class="bg-muted/40 p-6 rounded-lg border border-border h-full">
+            <div class="bg-card p-6 rounded-lg border border-border/50 hover:shadow-md transition-all hover:bg-card/95 hover:scale-105 duration-300 h-full">
               <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                <svelte:component this={highlight.icon} size={24} class="text-primary" />
+                <Icon icon={highlight.icon} width="24" height="24" class="text-primary" />
               </div>
               <h3 class="text-xl font-semibold mb-2">{highlight.title}</h3>
               <p class="text-muted-foreground">{highlight.description}</p>

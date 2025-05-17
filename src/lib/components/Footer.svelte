@@ -1,6 +1,7 @@
 <script lang="ts">
   import { aboutInfo } from '$lib/data/about';
-  import { Mail, Phone, MapPin, Linkedin, Github } from 'lucide-svelte';
+  import { Mail, MapPin, Linkedin, Github } from 'lucide-svelte';
+  import Icon from "@iconify/svelte";
   
   const { contactInfo, fullName } = aboutInfo;
   const currentYear = new Date().getFullYear();
@@ -15,10 +16,10 @@
         
         <div class="flex space-x-4">
           <a href={`https://${contactInfo.linkedin}`} target="_blank" rel="noopener noreferrer" class="text-muted-foreground hover:text-primary transition-colors" aria-label="LinkedIn Profile">
-            <Linkedin size={20} />
+            <Icon icon="mdi:linkedin" width="24" height="24" />
           </a>
           <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-muted-foreground hover:text-primary transition-colors" aria-label="GitHub Profile">
-            <Github size={20} />
+            <Icon icon="mdi:github" width="24" height="24" />
           </a>
         </div>
       </div>
@@ -27,19 +28,13 @@
         <h3 class="text-lg font-semibold mb-4">Contact Information</h3>
         <ul class="space-y-3">
           <li class="flex items-center">
-            <Mail size={18} class="mr-2 text-primary" />
+            <Icon icon="mdi:email" class="mr-2 text-primary" width="20" height="20" />
             <a href={`mailto:${contactInfo.email}`} class="hover:text-primary transition-colors">
               {contactInfo.email}
             </a>
           </li>
-          <li class="flex items-center">
-            <Phone size={18} class="mr-2 text-primary" />
-            <a href={`tel:${contactInfo.phone.replace(/\s/g, '')}`} class="hover:text-primary transition-colors">
-              {contactInfo.phone}
-            </a>
-          </li>
           <li class="flex items-start">
-            <MapPin size={18} class="mr-2 mt-1 text-primary" />
+            <Icon icon="mdi:map-marker" class="mr-2 mt-1 text-primary" width="20" height="20" />
             <span>{contactInfo.location}</span>
           </li>
         </ul>

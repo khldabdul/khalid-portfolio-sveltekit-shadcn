@@ -1,32 +1,32 @@
 <script lang="ts">
-  import { Tabs as TabsPrimitive } from "bits-ui";
-  import { getContext } from "svelte";
+	import { Tabs as TabsPrimitive } from "bits-ui";
+	import { cn } from "$lib/utils";
+	import { getContext } from "svelte";
 
-  type TabsProps = TabsPrimitive.Props;
-  export let value: TabsProps["value"];
-  export let onValueChange: TabsProps["onValueChange"] = undefined;
-  export let orientation: TabsProps["orientation"] = undefined;
-  export let activationMode: TabsProps["activationMode"] = undefined;
-  export let autoActivate: TabsProps["autoActivate"] = undefined;
-  export let loop: TabsProps["loop"] = undefined;
-  export let children: TabsProps["children"];
-  let { ...rest } = $$restProps;
+	type $$Props = TabsPrimitive.RootProps;
+	type $$Events = TabsPrimitive.RootEvents;
 
-  const { update } = getContext("melt") as {
-    update: (props: Record<string, any>) => void;
-  };
+	export let value: $$Props["value"] = undefined;
+	export let activationMode: $$Props["activationMode"] = undefined;
+	export let autoSelect: $$Props["autoSelect"] = undefined;
+	export let loop: $$Props["loop"] = undefined;
+	export let orientation: $$Props["orientation"] = undefined;
 
-  $: update({ orientation, activationMode, autoActivate, loop });
+	export let onValueChange: ((value: string) => void) | undefined = undefined;
+	export let handleValueChange = (val: string) => {
+		if (onValueChange) onValueChange(val);
+	};
 </script>
 
 <TabsPrimitive.Root
-  {value}
-  {onValueChange}
-  {orientation}
-  {activationMode}
-  {autoActivate}
-  {loop}
-  {...rest}
+	{value}
+	{activationMode}
+	{orientation}
+	{loop}
+	autoSelect={autoSelect}
+	onValueChange={handleValueChange}
+	class={cn("w-full", $$props.class)}
+	{...$$restProps}
 >
-  {@render children()}
+	<slot />
 </TabsPrimitive.Root>
