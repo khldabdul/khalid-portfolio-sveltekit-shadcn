@@ -35,28 +35,32 @@ A modern, responsive portfolio website built with SvelteKit, TypeScript, and sha
 - **TypeScript**: Type safety
 - **shadcn-svelte**: UI component library
 - **Tailwind CSS**: Styling
-- **Lucide Icons**: SVG icons
+- **Iconify Icons**: SVG icons
 - **Custom animation components**: For smooth transitions
 
 ## 📦 Getting Started
 
 1. Clone the repository
+
 ```bash
 git clone https://github.com/yourusername/khalid-portfolio.git
 cd khalid-portfolio
 ```
 
 2. Install dependencies
+
 ```bash
 npm install
 ```
 
 3. Start the development server
+
 ```bash
 npm run dev
 ```
 
 4. Build for production
+
 ```bash
 npm run build
 ```
@@ -82,6 +86,7 @@ The project uses Tailwind CSS with the shadcn-svelte theme. Colors and other des
 This site can be deployed to any static site hosting platform:
 
 1. Build the site:
+
 ```bash
 npm run build
 ```
