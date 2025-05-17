@@ -27,7 +27,12 @@
   }
   
   function toggleTheme() {
-    document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    if (isDark) {
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+    }
+    isDark = !isDark;
   }
 
   // Toggle mobile menu
