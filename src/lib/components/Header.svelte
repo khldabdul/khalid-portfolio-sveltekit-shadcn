@@ -12,7 +12,6 @@
     { label: "Experience", href: "#experience" },
     { label: "Skills", href: "#skills" },
     { label: "Projects", href: "#projects" },
-    { label: "Education", href: "#education" },
   ];
 
   let isMobileMenuOpen = false;
@@ -116,7 +115,7 @@
 
     <!-- Desktop Navigation -->
     <nav class="hidden md:flex items-center">
-      <ul class="flex space-x-6 mr-4">
+      <ul class="flex space-x-8 mr-4">
         {#each navItems as item}
           <li>
             <a

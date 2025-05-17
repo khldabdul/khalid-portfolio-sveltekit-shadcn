@@ -5,7 +5,6 @@
   import Experience from '$lib/components/Experience.svelte';
   import Skills from '$lib/components/Skills.svelte';
   import Projects from '$lib/components/Projects.svelte';
-  import Education from '$lib/components/Education.svelte';
   
   // SEO metadata
   const title = `${aboutInfo.fullName} | ${aboutInfo.title}`;
@@ -28,4 +27,3 @@
 <Experience />
 <Skills />
 <Projects />
-<Education />

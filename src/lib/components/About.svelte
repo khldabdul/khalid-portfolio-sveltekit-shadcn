@@ -30,34 +30,38 @@
   ];
 </script>
 
-<section id="about" class="py-20 px-4 sm:px-6 lg:px-8">
+<section id="about" class="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
   <div class="container mx-auto">
     <FadeIn>
       <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-center">About Me</h2>
       <div class="w-20 h-1 bg-primary mx-auto mb-12 rounded-full"></div>
     </FadeIn>
     
-    <div class="grid grid-cols-1 lg:grid-cols-5 gap-12">
-      <SlideIn direction="left" delay={200} class="lg:col-span-3">
-        <div class="prose prose-lg max-w-none">
-          <p class="text-lg leading-relaxed">{longBio}</p>
-          <p class="text-lg leading-relaxed mt-4">
-            With a focus on building robust testing solutions, I've helped organizations improve their
-            product quality and accelerate their development cycles. I believe in continuous learning
-            and staying updated with the latest testing technologies and methodologies.
-          </p>
+    <div class="max-w-5xl mx-auto">
+      <FadeIn>
+        <div class="bg-card p-8 rounded-xl shadow-sm border border-border mb-10">
+          <div class="prose prose-lg max-w-none">
+            <p class="text-lg leading-relaxed">{longBio}</p>
+            <p class="text-lg leading-relaxed mt-4">
+              With a focus on building robust testing solutions, I've helped organizations improve their
+              product quality and accelerate their development cycles. I believe in continuous learning
+              and staying updated with the latest testing technologies and methodologies.
+            </p>
+          </div>
         </div>
-      </SlideIn>
+      </FadeIn>
       
-      <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {#each highlights as highlight, i}
-          <SlideIn direction="right" delay={200 + (i * 100)}>
-            <div class="bg-card p-6 rounded-lg border border-border/50 hover:shadow-md transition-all hover:bg-card/95 hover:scale-105 duration-300 h-full">
-              <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                <Icon icon={highlight.icon} width="24" height="24" class="text-primary" />
+          <SlideIn direction="up" delay={200 + (i * 100)}>
+            <div class="bg-card p-6 rounded-xl border border-border/50 hover:shadow-md transition-all hover:bg-card/95 hover:border-primary/30 duration-300 h-full flex flex-col">
+              <div class="flex items-center mb-4">
+                <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
+                  <Icon icon={highlight.icon} width="20" height="20" class="text-primary" />
+                </div>
+                <h3 class="text-lg font-semibold">{highlight.title}</h3>
               </div>
-              <h3 class="text-xl font-semibold mb-2">{highlight.title}</h3>
-              <p class="text-muted-foreground">{highlight.description}</p>
+              <p class="text-muted-foreground text-sm">{highlight.description}</p>
             </div>
           </SlideIn>
         {/each}
