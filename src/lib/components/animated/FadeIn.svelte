@@ -1,19 +1,20 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
   import { browser } from '$app/environment';
   
-  export let delay = 0;
-  export let duration = 400;
-  export let threshold = 0.1;
+  // Props using Runes
+  let { delay = 0, duration = 400, threshold = 0.1 } = $props();
   
-  let visible = false;
-  let element: HTMLElement;
+  // State with Runes
+  let visible = $state(false);
+  let element = $state<HTMLElement | null>(null);
   
-  onMount(() => {
+  // Setup with $effect (replaces onMount)
+  $effect(() => {
+    if (!browser) return;
+    
     // Check for reduced motion preference
-    const prefersReducedMotion = browser && 
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
     if (prefersReducedMotion) {
       visible = true;
@@ -21,7 +22,7 @@
     }
     
     // Use IntersectionObserver if available
-    if (browser && 'IntersectionObserver' in window) {
+    if ('IntersectionObserver' in window && element) {
       const observer = new IntersectionObserver(
         entries => {
           if (entries[0].isIntersecting) {
