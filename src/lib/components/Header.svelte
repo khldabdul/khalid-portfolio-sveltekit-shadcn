@@ -1,7 +1,7 @@
 <script lang="ts">
   import { browser } from "$app/environment";
   import { aboutInfo } from "$lib/data/about";
-  import { Menu, X } from "lucide-svelte";
+  import { Menu, X, Sun, Moon } from "lucide-svelte";
   import { onMount } from "svelte";
   import { slide } from "svelte/transition";
 
@@ -20,6 +20,16 @@
   let headerVisible = true;
   let headerElement: HTMLElement;
   let headerHeight = 0;
+  let isDark = false;
+
+  // Toggle theme
+  function updateThemeState() {
+    isDark = document.documentElement.classList.contains('dark');
+  }
+  
+  function toggleTheme() {
+    document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  }
 
   // Toggle mobile menu
   const toggleMenu = () => {
@@ -66,6 +76,18 @@
         }
       });
     }
+    
+    updateThemeState();
+    
+    // Listen for class changes to update the icon
+    const observer = new MutationObserver(() => {
+      updateThemeState();
+    });
+    
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
   });
 
   // Handle scroll direction to show/hide header
@@ -93,8 +115,8 @@
     </a>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden md:block">
-      <ul class="flex space-x-6">
+    <nav class="hidden md:flex items-center">
+      <ul class="flex space-x-6 mr-4">
         {#each navItems as item}
           <li>
             <a
@@ -106,20 +128,44 @@
           </li>
         {/each}
       </ul>
+      <button 
+        aria-label="Toggle theme" 
+        class="p-2 rounded-md hover:bg-accent text-foreground"
+        on:click={toggleTheme}
+      >
+        {#if isDark}
+          <Sun class="h-[1.2rem] w-[1.2rem]" />
+        {:else}
+          <Moon class="h-[1.2rem] w-[1.2rem]" />
+        {/if}
+      </button>
     </nav>
 
     <!-- Mobile Menu Button -->
-    <button
-      class="md:hidden flex items-center"
-      on:click={toggleMenu}
-      aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-    >
-      {#if isMobileMenuOpen}
-        <X size={24} />
-      {:else}
-        <Menu size={24} />
-      {/if}
-    </button>
+    <div class="md:hidden flex items-center gap-2">
+      <button 
+        aria-label="Toggle theme" 
+        class="p-2 rounded-md hover:bg-accent text-foreground"
+        on:click={toggleTheme}
+      >
+        {#if isDark}
+          <Sun class="h-[1.2rem] w-[1.2rem]" />
+        {:else}
+          <Moon class="h-[1.2rem] w-[1.2rem]" />
+        {/if}
+      </button>
+      <button
+        class="flex items-center"
+        on:click={toggleMenu}
+        aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+      >
+        {#if isMobileMenuOpen}
+          <X size={24} />
+        {:else}
+          <Menu size={24} />
+        {/if}
+      </button>
+    </div>
   </div>
 
   <!-- Mobile Navigation -->

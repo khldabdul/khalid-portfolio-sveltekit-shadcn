@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "mode-watcher": "^0.1.0",
+    "class-variance-authority": "^0.7.0"
+  }
+}

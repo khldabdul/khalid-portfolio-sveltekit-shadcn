@@ -5,6 +5,7 @@
   import "../app.postcss";
   import Header from '$lib/components/Header.svelte';
   import Footer from '$lib/components/Footer.svelte';
+  import { ModeWatcher } from "mode-watcher";
   
   let scrollY = 0;
   
@@ -16,6 +17,8 @@
     }
   });
 </script>
+
+<ModeWatcher />
 
 <div class="min-h-screen flex flex-col bg-background text-foreground">
   <Header {scrollY} />
