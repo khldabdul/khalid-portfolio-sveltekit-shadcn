@@ -1,4 +1,4 @@
-import type { SkillCategory } from '$lib/types';
+import type { SkillCategory } from "$lib/types";
 
 export const skillCategories: SkillCategory[] = [
   {
@@ -7,8 +7,8 @@ export const skillCategories: SkillCategory[] = [
       { name: "TypeScript", icon: "typescript" },
       { name: "JavaScript", icon: "javascript" },
       { name: "Java", icon: "java" },
-      { name: "Node.js", icon: "nodejs" }
-    ]
+      { name: "Node.js", icon: "nodejs" },
+    ],
   },
   {
     name: "Testing Tools",
@@ -19,24 +19,24 @@ export const skillCategories: SkillCategory[] = [
       { name: "Appium", icon: "appium" },
       { name: "WebdriverIO", icon: "webdriverio" },
       { name: "k6", icon: "k6" },
-      { name: "Postman", icon: "postman" }
-    ]
+      { name: "Postman", icon: "postman" },
+    ],
   },
   {
     name: "Databases",
     skills: [
       { name: "MySQL", icon: "mysql" },
       { name: "PostgreSQL", icon: "postgresql" },
-      { name: "Redis", icon: "redis" }
-    ]
+      { name: "Redis", icon: "redis" },
+    ],
   },
   {
     name: "Project Management",
     skills: [
       { name: "JIRA", icon: "jira" },
       { name: "OpenProject", icon: "openproject" },
-      { name: "ClickUp", icon: "clickup" }
-    ]
+      { name: "ClickUp", icon: "clickup" },
+    ],
   },
   {
     name: "Testing & Reporting",
@@ -46,7 +46,7 @@ export const skillCategories: SkillCategory[] = [
       { name: "Allure Report", icon: "allure" },
       { name: "mochawesome", icon: "mochawesome" },
       { name: "jam.dev", icon: "jamdev" },
-      { name: "DBeaver", icon: "dbeaver" }
-    ]
-  }
+      { name: "DBeaver", icon: "dbeaver" },
+    ],
+  },
 ];

@@ -38,18 +38,7 @@
     </FadeIn>
     
     <div class="max-w-5xl mx-auto">
-      <FadeIn>
-        <div class="bg-card p-8 rounded-xl shadow-sm border border-border mb-10">
-          <div class="prose prose-lg max-w-none">
-            <p class="text-lg leading-relaxed">{longBio}</p>
-            <p class="text-lg leading-relaxed mt-4">
-              With a focus on building robust testing solutions, I've helped organizations improve their
-              product quality and accelerate their development cycles. I believe in continuous learning
-              and staying updated with the latest testing technologies and methodologies.
-            </p>
-          </div>
-        </div>
-      </FadeIn>
+      <!-- Paragraph card removed as requested -->
       
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {#each highlights as highlight, i}

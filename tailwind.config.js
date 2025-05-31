@@ -1,5 +1,14 @@
 import { fontFamily } from "tailwindcss/defaultTheme";
 
+// Check if daisyui is available, use it if possible
+let daisyuiPlugin;
+try {
+  daisyuiPlugin = require("daisyui");
+} catch (error) {
+  console.log("daisyui not found, continuing without it...");
+  daisyuiPlugin = null;
+}
+
 /** @type {import('tailwindcss').Config} */
 const config = {
 	darkMode: ["class"],
@@ -59,6 +68,18 @@ const config = {
 			}
 		}
 	},
+	plugins: daisyuiPlugin ? [daisyuiPlugin] : [],
+	// DaisyUI config (only applied if daisyui is available)
+	...(daisyuiPlugin && {
+		daisyui: {
+			themes: ["light", "dark"],
+			darkTheme: "dark",
+			base: false,
+			styled: true,
+			utils: true,
+			logs: false,
+		}
+	})
 };
 
 export default config;
