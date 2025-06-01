@@ -42,22 +42,85 @@ export default {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
         },
-        // Enhanced brutalist color system
-        'pure-white': '#FCFCFC',
-        'pure-black': '#0F0F0F',
-        'electric-green': '#00FF00',
-        'warm-amber': '#F59E0B',
-        'brutalist-gray': {
-          50: '#FAFAFA',
-          100: '#F5F5F5',
-          200: '#E5E5E5',
-          300: '#D4D4D4',
-          400: '#A3A3A3',
-          500: '#737373',
-          600: '#525252',
-          700: '#404040',
-          800: '#262626',
-          900: '#171717'
+        
+        // Enhanced color palette
+        'warm-amber': {
+          50: '#FEF7ED',
+          100: '#FEF0DD',
+          200: '#FCD9B6',
+          300: '#FDBA74',
+          400: '#FB923C',
+          500: '#F59E0B', // Primary amber
+          600: '#D97706',
+          700: '#B45309',
+          800: '#92400E',
+          900: '#78350F'
+        },
+        
+        'electric-green': {
+          50: '#ECFDF5',
+          100: '#D1FAE5',
+          200: '#A7F3D0',
+          300: '#6EE7B7',
+          400: '#34D399',
+          500: '#10B981', // Primary green
+          600: '#059669',
+          700: '#047857',
+          800: '#065F46',
+          900: '#064E3B'
+        },
+        
+        'complementary-blue': {
+          50: '#EFF6FF',
+          100: '#DBEAFE',
+          200: '#BFDBFE',
+          300: '#93C5FD',
+          400: '#60A5FA',
+          500: '#3B82F6', // Primary blue
+          600: '#2563EB',
+          700: '#1D4ED8',
+          800: '#1E40AF',
+          900: '#1E3A8A'
+        },
+        
+        'complementary-purple': {
+          50: '#F5F3FF',
+          100: '#EDE9FE',
+          200: '#DDD6FE',
+          300: '#C4B5FD',
+          400: '#A78BFA',
+          500: '#8B5CF6', // Primary purple
+          600: '#7C3AED',
+          700: '#6D28D9',
+          800: '#5B21B6',
+          900: '#4C1D95'
+        },
+        
+        // Neutral warm and cool palettes
+        'warm-neutral': {
+          50: '#FAFAF9',
+          100: '#F5F5F4',
+          200: '#E7E5E4',
+          300: '#D6D3D1',
+          400: '#A8A29E',
+          500: '#78716C',
+          600: '#57534E',
+          700: '#44403C',
+          800: '#292524',
+          900: '#1C1917'
+        },
+        
+        'cool-neutral': {
+          50: '#F8FAFC',
+          100: '#F1F5F9',
+          200: '#E2E8F0',
+          300: '#CBD5E1',
+          400: '#94A3B8',
+          500: '#64748B',
+          600: '#475569',
+          700: '#334155',
+          800: '#1E293B',
+          900: '#0F172A'
         }
       },
       borderRadius: {
@@ -122,6 +185,30 @@ export default {
       maxWidth: {
         'brutalist-content': '65ch',
         'brutalist-reading': '75ch'
+      },
+      animation: {
+        'gradient-shift': 'gradientShift 4s ease-in-out infinite',
+        'shimmer': 'shimmer 3s ease-in-out infinite',
+        'float': 'float 6s ease-in-out infinite',
+        'pulse-glow': 'pulseGlow 2s ease-in-out infinite alternate',
+      },
+      keyframes: {
+        gradientShift: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' }
+        },
+        shimmer: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' }
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' }
+        },
+        pulseGlow: {
+          '0%': { boxShadow: '0 0 20px hsl(var(--primary) / 0.5)' },
+          '100%': { boxShadow: '0 0 40px hsl(var(--primary) / 0.8)' }
+        }
       }
     }
   },
@@ -129,7 +216,7 @@ export default {
     typography,
     forms,
     containerQueries,
-    // Custom brutalist plugin
+    // Enhanced brutalist plugin
     function({ addUtilities, addComponents, theme }) {
       const brutalistUtilities = {
         '.no-animations': {
@@ -171,6 +258,12 @@ export default {
             'grid-template-columns': '1fr',
             gap: theme('spacing.4')
           }
+        },
+        '.gradient-text': {
+          background: `linear-gradient(135deg, ${theme('colors.primary.DEFAULT')}, ${theme('colors.accent.DEFAULT')})`,
+          '-webkit-background-clip': 'text',
+          'background-clip': 'text',
+          '-webkit-text-fill-color': 'transparent'
         }
       }
 
@@ -185,6 +278,7 @@ export default {
           'letter-spacing': '0.05em',
           cursor: 'pointer',
           'border-radius': '0',
+          transition: 'all 0.2s ease',
           '&:hover': {
             background: theme('colors.background'),
             color: theme('colors.primary.DEFAULT')
@@ -200,9 +294,26 @@ export default {
           'letter-spacing': '0.05em',
           cursor: 'pointer',
           'border-radius': '0',
+          transition: 'all 0.2s ease',
           '&:hover': {
             background: theme('colors.foreground'),
             color: theme('colors.background')
+          }
+        },
+        '.btn-brutalist-accent': {
+          background: theme('colors.accent.DEFAULT'),
+          color: theme('colors.accent.foreground'),
+          border: `2px solid ${theme('colors.accent.DEFAULT')}`,
+          padding: `${theme('spacing.4')} ${theme('spacing.8')}`,
+          'font-weight': '700',
+          'text-transform': 'uppercase',
+          'letter-spacing': '0.05em',
+          cursor: 'pointer',
+          'border-radius': '0',
+          transition: 'all 0.2s ease',
+          '&:hover': {
+            background: theme('colors.background'),
+            color: theme('colors.accent.DEFAULT')
           }
         },
         '.card-brutalist': {

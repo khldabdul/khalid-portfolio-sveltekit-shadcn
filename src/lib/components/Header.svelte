@@ -1,7 +1,7 @@
 <script lang="ts">
   import { browser } from "$app/environment";
   import { aboutInfo } from "$lib/data/about";
-  import { Menu, X, Sun, Moon } from "lucide-svelte";
+  import Icon from "@iconify/svelte";
   import { onMount } from "svelte";
 
   // Remove unused scrollY export
@@ -98,12 +98,12 @@
   <div class="brutalist-container">
     <div class="flex justify-between items-center py-4">
       
-      <!-- Logo/Name - Brutalist Typography -->
+      <!-- Logo/Domain - Brutalist Typography -->
       <a 
         href="/" 
         class="brutalist-heading-md text-foreground hover:text-primary focus-brutalist no-underline"
       >
-        {aboutInfo.fullName.split(" ")[0].toUpperCase()}
+        khld.space
       </a>
 
       <!-- Desktop Navigation - Minimal -->
@@ -128,9 +128,9 @@
           on:click={toggleTheme}
         >
           {#if isDark}
-            <Sun size={16} strokeWidth={2} />
+            <Icon icon="lucide:sun" width={16} height={16} />
           {:else}
-            <Moon size={16} strokeWidth={2} />
+            <Icon icon="lucide:moon" width={16} height={16} />
           {/if}
         </button>
       </nav>
@@ -144,9 +144,9 @@
           on:click={toggleTheme}
         >
           {#if isDark}
-            <Sun size={16} strokeWidth={2} />
+            <Icon icon="lucide:sun" width={16} height={16} />
           {:else}
-            <Moon size={16} strokeWidth={2} />
+            <Icon icon="lucide:moon" width={16} height={16} />
           {/if}
         </button>
         
@@ -157,9 +157,9 @@
           aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
         >
           {#if isMobileMenuOpen}
-            <X size={20} strokeWidth={2} />
+            <Icon icon="lucide:x" width={20} height={20} />
           {:else}
-            <Menu size={20} strokeWidth={2} />
+            <Icon icon="lucide:menu" width={20} height={20} />
           {/if}
         </button>
       </div>

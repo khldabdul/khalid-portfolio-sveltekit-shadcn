@@ -1,13 +1,15 @@
 <script lang="ts">
   import { aboutInfo } from "$lib/data/about";
-  import { Download, Github, Linkedin } from "lucide-svelte";
+  import Icon from "@iconify/svelte";
+  import AnimatedName from "$lib/components/animated/AnimatedName.svelte";
+  import AnimatedJobTitle from "$lib/components/animated/AnimatedJobTitle.svelte";
 
-  const { fullName, title, photoUrl, shortBio, contactInfo } = aboutInfo;
+  const { fullName, photoUrl, shortBio, contactInfo } = aboutInfo;
 </script>
 
 <section
   id="home"
-  class="min-h-screen flex items-center py-8 px-8 bg-background"
+  class="min-h-screen flex items-center py-8 px-8 bg-background relative"
 >
   <div class="brutalist-container w-full">
     <!-- Asymmetrical Grid - Optimized for viewport -->
@@ -24,12 +26,31 @@
         
         <!-- Main Typography Block -->
         <div class="space-y-4">
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-none tracking-tight text-foreground">
-            {fullName.toUpperCase()}
+          <!-- Animated Name with both options -->
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-none tracking-tight">
+            <!-- You can switch between 'underline' and 'gradient' variants -->
+            <AnimatedName 
+              name={fullName} 
+              variant="underline" 
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-none tracking-tight"
+            />
           </h1>
           
+          <!-- Alternative gradient version - uncomment to try -->
+          <!-- 
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-none tracking-tight">
+            <AnimatedName 
+              name={fullName} 
+              variant="gradient" 
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-none tracking-tight"
+            />
+          </h1>
+          -->
+          
           <h2 class="text-xl sm:text-2xl lg:text-3xl font-normal text-foreground">
-            {title.toUpperCase()}
+            <AnimatedJobTitle 
+              className="text-xl sm:text-2xl lg:text-3xl font-normal text-foreground"
+            />
           </h2>
           
           <div class="max-w-xl">
@@ -48,13 +69,16 @@
             >
               VIEW WORK
             </a>
+            <!-- Resume button is now hidden -->
+            <!-- 
             <a
               href="/files/resume.pdf"
               download
               class="brutalist-button-secondary inline-flex items-center justify-center gap-3 focus-brutalist"
             >
-              <Download size={16} strokeWidth={2} /> RESUME
+              <Icon icon="lucide:download" width={16} height={16} /> RESUME
             </a>
+            -->
           </div>
 
           <!-- Social Links Block -->
@@ -66,19 +90,19 @@
                   href={`https://${contactInfo.linkedin}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="text-foreground hover:text-primary focus-brutalist"
+                  class="text-foreground hover:text-primary focus-brutalist transition-colors duration-200"
                   aria-label="LinkedIn Profile"
                 >
-                  <Linkedin size={20} strokeWidth={2} />
+                  <Icon icon="simple-icons:linkedin" width={20} height={20} />
                 </a>
                 <a
-                  href="https://github.com"
+                  href="https://github.com/khldabdul"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="text-foreground hover:text-primary focus-brutalist"
+                  class="text-foreground hover:text-accent focus-brutalist transition-colors duration-200"
                   aria-label="GitHub Profile"
                 >
-                  <Github size={20} strokeWidth={2} />
+                  <Icon icon="simple-icons:github" width={20} height={20} />
                 </a>
               </div>
             </div>
@@ -101,9 +125,9 @@
             </div>
           </div>
           
-          <!-- Status Block -->
+          <!-- Status Block with accent color -->
           <div class="mt-4">
-            <div class="border-brutalist border-foreground bg-foreground text-background p-3">
+            <div class="border-brutalist border-accent bg-accent text-accent-foreground p-3">
               <div class="text-center">
                 <p class="brutalist-small font-bold">AVAILABLE FOR WORK</p>
               </div>
@@ -120,7 +144,7 @@
                 </div>
                 <div class="flex justify-between">
                   <span class="brutalist-small">STATUS:</span>
-                  <span class="brutalist-small">OPEN</span>
+                  <span class="brutalist-small text-primary font-bold">OPEN</span>
                 </div>
               </div>
             </div>

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { projects } from '$lib/data/projects';
-  import { Github, ExternalLink } from 'lucide-svelte';
+  import Icon from '@iconify/svelte';
 </script>
 
 <section id="projects" class="py-16 bg-background">
@@ -113,7 +113,7 @@
           rel="noopener noreferrer"
           class="inline-flex items-center gap-3 border-2 border-secondary bg-secondary text-secondary-foreground px-6 py-3 font-medium hover:bg-background hover:text-secondary transition-none focus-brutalist"
         >
-          <Github size={18} strokeWidth={2} />
+          <Icon icon="simple-icons:github" width={18} height={18} />
           VIEW ALL PROJECTS
         </a>
       </div>

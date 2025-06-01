@@ -1,7 +1,7 @@
 <script lang="ts">
   import { aboutInfo } from '$lib/data/about';
   import FadeIn from '$lib/components/animated/FadeIn.svelte';
-  import { Mail, Phone, MapPin, Linkedin, Send } from 'lucide-svelte';
+  import Icon from '@iconify/svelte';
   
   const { contactInfo } = aboutInfo;
   
@@ -45,7 +45,7 @@
           <div class="space-y-6">
             <div class="flex items-start">
               <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4">
-                <Mail size={20} class="text-primary" />
+                <Icon icon="lucide:mail" width={20} height={20} class="text-primary" />
               </div>
               <div>
                 <h4 class="text-lg font-medium">Email</h4>
@@ -60,7 +60,7 @@
             
             <div class="flex items-start">
               <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4">
-                <Phone size={20} class="text-primary" />
+                <Icon icon="lucide:phone" width={20} height={20} class="text-primary" />
               </div>
               <div>
                 <h4 class="text-lg font-medium">Phone</h4>
@@ -75,7 +75,7 @@
             
             <div class="flex items-start">
               <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4">
-                <MapPin size={20} class="text-primary" />
+                <Icon icon="lucide:map-pin" width={20} height={20} class="text-primary" />
               </div>
               <div>
                 <h4 class="text-lg font-medium">Location</h4>
@@ -85,7 +85,7 @@
             
             <div class="flex items-start">
               <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4">
-                <Linkedin size={20} class="text-primary" />
+                <Icon icon="simple-icons:linkedin" width={20} height={20} class="text-primary" />
               </div>
               <div>
                 <h4 class="text-lg font-medium">LinkedIn</h4>
@@ -159,7 +159,7 @@
                   <div class="animate-spin h-4 w-4 border-2 border-primary-foreground border-t-transparent rounded-full mr-2"></div>
                   Sending...
                 {:else}
-                  <Send size={18} /> Send Message
+                  <Icon icon="lucide:send" width={18} height={18} /> Send Message
                 {/if}
               </button>
             </form>
