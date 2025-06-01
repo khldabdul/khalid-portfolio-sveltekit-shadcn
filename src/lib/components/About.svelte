@@ -1,7 +1,5 @@
 <script lang="ts">
   import { aboutInfo } from '$lib/data/about';
-  import FadeIn from '$lib/components/animated/FadeIn.svelte';
-  import SlideIn from '$lib/components/animated/SlideIn.svelte';
   import Icon from "@iconify/svelte";
   
   const { longBio } = aboutInfo;
@@ -30,31 +28,76 @@
   ];
 </script>
 
-<section id="about" class="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
-  <div class="container mx-auto">
-    <FadeIn>
-      <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-center">About Me</h2>
-      <div class="w-20 h-1 bg-primary mx-auto mb-12 rounded-full"></div>
-    </FadeIn>
+<section id="about" class="py-16 bg-background">
+  <div class="brutalist-container">
     
-    <div class="max-w-5xl mx-auto">
-      <!-- Paragraph card removed as requested -->
-      
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-        {#each highlights as highlight, i}
-          <SlideIn direction="up" delay={200 + (i * 100)}>
-            <div class="bg-card p-6 rounded-xl border border-border/50 hover:shadow-md transition-all hover:bg-card/95 hover:border-primary/30 duration-300 h-full flex flex-col">
-              <div class="flex items-center mb-4">
-                <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
-                  <Icon icon={highlight.icon} width="20" height="20" class="text-primary" />
-                </div>
-                <h3 class="text-lg font-semibold">{highlight.title}</h3>
-              </div>
-              <p class="text-muted-foreground text-sm">{highlight.description}</p>
+    <!-- Section Header - Standardized -->
+    <div class="mb-12">
+      <h2 class="brutalist-heading-lg text-foreground">
+        ABOUT ME
+      </h2>
+      <div class="w-24 h-1 bg-secondary mt-4"></div>
+    </div>
+    
+    <!-- Bio - Clean Typography -->
+    <div class="mb-16">
+      <p class="text-lg leading-relaxed text-muted-foreground max-w-4xl">
+        {longBio}
+      </p>
+    </div>
+
+    <!-- Highlights Grid - Less Boxing -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {#each highlights as highlight}
+        <div class="group">
+          
+          <!-- Icon with Amber Accent -->
+          <div class="mb-4">
+            <div class="w-12 h-12 border-2 border-secondary bg-secondary text-secondary-foreground flex items-center justify-center group-hover:bg-background group-hover:text-secondary transition-none">
+              <Icon 
+                icon={highlight.icon} 
+                width="24" 
+                height="24"
+              />
             </div>
-          </SlideIn>
-        {/each}
+          </div>
+          
+          <!-- Content -->
+          <div>
+            <h3 class="brutalist-heading-md text-foreground mb-3 group-hover:text-secondary">
+              {highlight.title.toUpperCase()}
+            </h3>
+            <p class="text-muted-foreground leading-relaxed">
+              {highlight.description}
+            </p>
+          </div>
+        </div>
+      {/each}
+    </div>
+
+    <!-- About Summary - Amber Accent -->
+    <div class="mt-16">
+      <div class="border-2 border-secondary bg-secondary text-secondary-foreground p-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="text-center">
+            <p class="text-2xl font-bold">AI</p>
+            <p class="text-sm font-medium">INTEGRATION</p>
+          </div>
+          <div class="text-center">
+            <p class="text-2xl font-bold">QA</p>
+            <p class="text-sm font-medium">LEADERSHIP</p>
+          </div>
+          <div class="text-center">
+            <p class="text-2xl font-bold">TEST</p>
+            <p class="text-sm font-medium">AUTOMATION</p>
+          </div>
+          <div class="text-center">
+            <p class="text-2xl font-bold">TEAM</p>
+            <p class="text-sm font-medium">MENTORING</p>
+          </div>
+        </div>
       </div>
     </div>
+
   </div>
 </section>

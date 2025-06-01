@@ -1,107 +1,156 @@
 <script lang="ts">
-  import FadeIn from "$lib/components/animated/FadeIn.svelte";
-  import TypewriterText from "$lib/components/animated/TypewriterText.svelte";
   import { aboutInfo } from "$lib/data/about";
-  import { Download, Github, Linkedin } from "lucide-svelte";
+  import Icon from "@iconify/svelte";
+  import AnimatedName from "$lib/components/animated/AnimatedName.svelte";
+  import AnimatedJobTitle from "$lib/components/animated/AnimatedJobTitle.svelte";
 
-  const { fullName, title, photoUrl, shortBio, contactInfo } = aboutInfo;
+  const { fullName, photoUrl, shortBio, contactInfo } = aboutInfo;
 </script>
 
 <section
   id="home"
-  class="min-h-screen flex items-center pt-16 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-background to-muted/30"
+  class="min-h-screen flex items-center py-8 px-8 bg-background relative"
 >
-  <div class="container mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <FadeIn delay={200}>
-        <div class="flex flex-col space-y-6 max-w-xl">
-          <span class="text-primary font-medium">Hello, I'm</span>
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold">
-            <TypewriterText text={fullName} delay={500} speed={50} />
-          </h1>
-          <p class="text-xl sm:text-2xl font-medium text-muted-foreground">
-            {title}
+  <div class="brutalist-container w-full">
+    <!-- Asymmetrical Grid - Optimized for viewport -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
+      
+      <!-- Left side - Typography Statement Block -->
+      <div class="lg:col-span-7 space-y-6">
+        <!-- Status Label -->
+        <div class="border-brutalist border-foreground inline-block">
+          <p class="brutalist-small px-4 py-2 bg-foreground text-background">
+            PORTFOLIO
           </p>
-          <p class="text-lg">{shortBio}</p>
+        </div>
+        
+        <!-- Main Typography Block -->
+        <div class="space-y-4">
+          <!-- Animated Name with both options -->
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-none tracking-tight">
+            <!-- You can switch between 'underline' and 'gradient' variants -->
+            <AnimatedName 
+              name={fullName} 
+              variant="underline" 
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-none tracking-tight"
+            />
+          </h1>
+          
+          <!-- Alternative gradient version - uncomment to try -->
+          <!-- 
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-none tracking-tight">
+            <AnimatedName 
+              name={fullName} 
+              variant="gradient" 
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-none tracking-tight"
+            />
+          </h1>
+          -->
+          
+          <h2 class="text-xl sm:text-2xl lg:text-3xl font-normal text-foreground">
+            <AnimatedJobTitle 
+              className="text-xl sm:text-2xl lg:text-3xl font-normal text-foreground"
+            />
+          </h2>
+          
+          <div class="max-w-xl">
+            <p class="text-base sm:text-lg leading-relaxed text-foreground">
+              {shortBio}
+            </p>
+          </div>
+        </div>
 
-          <div class="flex flex-wrap gap-4 pt-4">
+        <!-- Action Block -->
+        <div class="space-y-4 pt-4">
+          <div class="flex flex-col sm:flex-row gap-3">
             <a
               href="#projects"
-              class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-colors"
+              class="brutalist-button focus-brutalist"
             >
-              See Projects
+              VIEW WORK
             </a>
+            <!-- Resume button is now hidden -->
+            <!-- 
             <a
               href="/files/resume.pdf"
               download
-              class="inline-flex items-center gap-2 px-6 py-3 bg-muted hover:bg-muted/80 rounded-md font-medium transition-colors"
+              class="brutalist-button-secondary inline-flex items-center justify-center gap-3 focus-brutalist"
             >
-              <Download size={18} /> Resume
+              <Icon icon="lucide:download" width={16} height={16} /> RESUME
             </a>
+            -->
           </div>
 
-          <div class="flex items-center gap-4 pt-2">
-            <a
-              href={`https://${contactInfo.linkedin}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-muted-foreground hover:text-primary transition-colors"
-              aria-label="LinkedIn Profile"
-            >
-              <Linkedin size={24} />
-            </a>
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-muted-foreground hover:text-primary transition-colors"
-              aria-label="GitHub Profile"
-            >
-              <Github size={24} />
-            </a>
+          <!-- Social Links Block -->
+          <div class="border-brutalist border-foreground p-3 bg-background">
+            <div class="flex items-center gap-6">
+              <p class="brutalist-small text-foreground">CONNECT:</p>
+              <div class="flex items-center gap-3">
+                <a
+                  href={`https://${contactInfo.linkedin}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-foreground hover:text-primary focus-brutalist transition-colors duration-200"
+                  aria-label="LinkedIn Profile"
+                >
+                  <Icon icon="simple-icons:linkedin" width={20} height={20} />
+                </a>
+                <a
+                  href="https://github.com/khldabdul"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-foreground hover:text-accent focus-brutalist transition-colors duration-200"
+                  aria-label="GitHub Profile"
+                >
+                  <Icon icon="simple-icons:github" width={20} height={20} />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
-      </FadeIn>
+      </div>
 
-      <FadeIn delay={400}>
-        <div class="relative aspect-square w-full max-w-md mx-auto lg:ml-auto">
-          <div
-            class="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5 rounded-full"
-          ></div>
-          <img
-            src={photoUrl}
-            alt={fullName}
-            class="w-full h-full object-cover rounded-full p-2 relative z-10"
-          />
+      <!-- Right side - Image as Brutalist Geometric Block -->
+      <div class="lg:col-span-5">
+        <div class="max-w-sm mx-auto lg:mx-0 lg:ml-auto">
+          
+          <!-- Main Image Block -->
+          <div class="border-brutalist-thick border-foreground bg-background p-3">
+            <div class="aspect-square">
+              <img
+                src={photoUrl}
+                alt={fullName}
+                class="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+          
+          <!-- Status Block with accent color -->
+          <div class="mt-4">
+            <div class="border-brutalist border-accent bg-accent text-accent-foreground p-3">
+              <div class="text-center">
+                <p class="brutalist-small font-bold">AVAILABLE FOR WORK</p>
+              </div>
+            </div>
+          </div>
 
-          <!-- Animated decoration circles -->
-          <div
-            class="absolute -top-4 -right-4 w-20 h-20 border-2 border-primary/30 rounded-full animate-pulse"
-          ></div>
-          <div
-            class="absolute -bottom-6 -left-6 w-24 h-24 border-2 border-primary/20 rounded-full animate-pulse"
-            style="animation-delay: 1s"
-          ></div>
+          <!-- Info Block -->
+          <div class="mt-3">
+            <div class="border-brutalist border-foreground bg-background p-3">
+              <div class="space-y-1">
+                <div class="flex justify-between">
+                  <span class="brutalist-small">LOCATION:</span>
+                  <span class="brutalist-small">REMOTE</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="brutalist-small">STATUS:</span>
+                  <span class="brutalist-small text-primary font-bold">OPEN</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </FadeIn>
+      </div>
     </div>
   </div>
 </section>
-
-<style>
-  @keyframes pulse {
-    0%,
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-    50% {
-      transform: scale(1.05);
-      opacity: 0.8;
-    }
-  }
-
-  .animate-pulse {
-    animation: pulse 4s ease-in-out infinite;
-  }
-</style>
