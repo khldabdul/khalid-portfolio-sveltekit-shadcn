@@ -1,17 +1,6 @@
 <script lang="ts">
-  import FadeIn from "$lib/components/animated/FadeIn.svelte";
-  import * as Tabs from "$lib/components/ui/tabs";
-  import * as Card from "$lib/components/ui/card";
   import { skillCategories } from "$lib/data/skills";
   import Icon from "@iconify/svelte";
-
-  // Use state with Runes
-  let activeCategory = $state(skillCategories[0].name);
-
-  // Handler functions using Runes
-  function handleValueChange(val: string) {
-    activeCategory = val;
-  }
 
   // Map of skill names to Iconify icon names
   const iconMap: Record<string, string> = {
@@ -39,63 +28,77 @@
     "jam.dev": "mdi:dev-to",
     DBeaver: "mdi:database-outline"
   };
+
+  // Flatten all skills into single array for compact display
+  const allSkills = skillCategories.flatMap(category => category.skills);
 </script>
 
-<section id="skills" class="py-20 px-4 sm:px-6 lg:px-8 bg-muted/10">
-  <div class="container mx-auto">
-    <FadeIn>
-      <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-center">
-        Technical Skills
+<section id="skills" class="py-16 bg-background">
+  <div class="brutalist-container">
+    
+    <!-- Section Header - Standardized -->
+    <div class="mb-12">
+      <h2 class="brutalist-heading-lg text-foreground">
+        TECHNICAL SKILLS
       </h2>
-      <div class="w-20 h-1 bg-primary mx-auto mb-12 rounded-full"></div>
-    </FadeIn>
+      <div class="w-24 h-1 bg-secondary mt-4"></div>
+    </div>
 
-    <Tabs.Root
-      value={activeCategory}
-      onValueChange={handleValueChange}
-      class="w-full"
-    >
-      <div class="flex justify-center mb-8 overflow-x-auto pb-2">
-        <Tabs.List class="bg-background/50 backdrop-blur-sm border">
-          {#each skillCategories as category (category.name)}
-            <Tabs.Trigger value={category.name}>{category.name}</Tabs.Trigger>
-          {/each}
-        </Tabs.List>
-      </div>
-
-      {#each skillCategories as category (category.name)}
-        <Tabs.Content
-          value={category.name}
-          class="mt-6 animate-in fade-in-50 duration-300"
-        >
-          <div
-            class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"
-          >
-            {#each category.skills as skill, i}
-              <FadeIn delay={50 * i}>
-                <Card.Root class="h-full hover:shadow-md transition-all hover:bg-card/95 hover:scale-105 duration-300 border border-border/50">
-                  <Card.Header class="space-y-0 pb-2">
-                    <div class="w-full flex justify-center">
-                      <div class="w-16 h-16 mb-4 flex items-center justify-center bg-primary/5 rounded-full p-3">
-                        {#if iconMap[skill.name]}
-                          <Icon icon={iconMap[skill.name]} width="38" height="38" />
-                        {:else}
-                          <div class="w-12 h-12 rounded-full bg-primary/10 text-primary font-bold text-xl flex items-center justify-center">
-                            {skill.name.charAt(0)}
-                          </div>
-                        {/if}
-                      </div>
-                    </div>
-                  </Card.Header>
-                  <Card.Content class="text-center pt-0">
-                    <Card.Title class="text-lg font-medium pt-0">{skill.name}</Card.Title>
-                  </Card.Content>
-                </Card.Root>
-              </FadeIn>
-            {/each}
+    <!-- Unified Skills Grid - Clean Layout -->
+    <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
+      {#each allSkills as skill}
+        <div class="group text-center p-3 hover:scale-105 transition-none">
+          
+          <!-- Icon with Amber Accent -->
+          <div class="mb-3">
+            <div class="w-10 h-10 mx-auto border border-muted bg-card flex items-center justify-center group-hover:border-secondary group-hover:bg-secondary group-hover:text-secondary-foreground transition-none">
+              {#if iconMap[skill.name]}
+                <Icon 
+                  icon={iconMap[skill.name]} 
+                  width="20" 
+                  height="20"
+                />
+              {:else}
+                <span class="text-sm font-bold">
+                  {skill.name.charAt(0)}
+                </span>
+              {/if}
+            </div>
           </div>
-        </Tabs.Content>
+
+          <!-- Skill Name -->
+          <div>
+            <p class="text-xs font-medium text-muted-foreground group-hover:text-secondary leading-tight">
+              {skill.name.toUpperCase()}
+            </p>
+          </div>
+        </div>
       {/each}
-    </Tabs.Root>
+    </div>
+
+    <!-- Skills Summary - Amber Accent -->
+    <div class="mt-16">
+      <div class="border-2 border-secondary bg-secondary text-secondary-foreground p-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="text-center">
+            <p class="text-2xl font-bold">
+              {allSkills.length}+
+            </p>
+            <p class="text-sm font-medium">TECHNOLOGIES</p>
+          </div>
+          <div class="text-center">
+            <p class="text-2xl font-bold">
+              {skillCategories.length}
+            </p>
+            <p class="text-sm font-medium">CATEGORIES</p>
+          </div>
+          <div class="text-center">
+            <p class="text-2xl font-bold">5+</p>
+            <p class="text-sm font-medium">YEARS EXPERIENCE</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>

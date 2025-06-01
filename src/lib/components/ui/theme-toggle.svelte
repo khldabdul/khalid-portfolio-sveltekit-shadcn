@@ -34,10 +34,16 @@
   });
 </script>
 
-<Button variant="ghost" size="icon" aria-label="Toggle theme" on:click={toggleTheme} class="text-foreground">
+<Button 
+  variant="ghost" 
+  size="icon" 
+  aria-label="Toggle theme" 
+  on:click={toggleTheme} 
+  class="text-foreground hover:bg-primary/10 hover:text-primary transition-all duration-300 neon-glow-hover border border-primary/20 hover:border-primary/40"
+>
   {#if isDark}
-    <Sun class="h-[1.2rem] w-[1.2rem]" />
+    <Sun class="h-[1.2rem] w-[1.2rem] transition-transform duration-300 hover:rotate-180" />
   {:else}
-    <Moon class="h-[1.2rem] w-[1.2rem]" />
+    <Moon class="h-[1.2rem] w-[1.2rem] transition-transform duration-300 hover:-rotate-12" />
   {/if}
 </Button>

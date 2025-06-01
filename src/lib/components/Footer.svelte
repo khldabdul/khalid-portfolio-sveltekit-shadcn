@@ -1,48 +1,92 @@
 <script lang="ts">
   import { aboutInfo } from '$lib/data/about';
   import { Mail, MapPin, Linkedin, Github } from 'lucide-svelte';
-  import Icon from "@iconify/svelte";
   
   const { contactInfo, fullName } = aboutInfo;
   const currentYear = new Date().getFullYear();
 </script>
 
-<footer class="bg-muted/30 py-12">
-  <div class="container mx-auto px-4">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div>
-        <h3 class="text-2xl font-bold mb-4">{fullName}</h3>
-        <p class="mb-6 max-w-md">Senior QA Engineer specialized in test automation with a passion for improving traditional work processes using AI and innovative technologies.</p>
+<footer class="bg-background border-t-brutalist-thick border-foreground">
+  <div class="brutalist-container py-brutalist-xl">
+    
+    <!-- Contact Block -->
+    <div class="border-brutalist border-foreground p-6 bg-foreground text-background">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         
-        <div class="flex space-x-4">
-          <a href={`https://${contactInfo.linkedin}`} target="_blank" rel="noopener noreferrer" class="text-muted-foreground hover:text-primary transition-colors" aria-label="LinkedIn Profile">
-            <Icon icon="mdi:linkedin" width="24" height="24" />
-          </a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-muted-foreground hover:text-primary transition-colors" aria-label="GitHub Profile">
-            <Icon icon="mdi:github" width="24" height="24" />
-          </a>
+        <!-- Contact Info -->
+        <div>
+          <h3 class="brutalist-heading-md mb-4">
+            CONTACT
+          </h3>
+          <div class="space-y-4">
+            <div class="border-brutalist border-background p-3 bg-background text-foreground">
+              <div class="flex items-center gap-3">
+                <Mail size={20} strokeWidth={2} />
+                <a 
+                  href={`mailto:${contactInfo.email}`} 
+                  class="brutalist-body hover:text-primary focus-brutalist"
+                >
+                  {contactInfo.email.toUpperCase()}
+                </a>
+              </div>
+            </div>
+            
+            <div class="border-brutalist border-background p-3 bg-background text-foreground">
+              <div class="flex items-center gap-3">
+                <MapPin size={20} strokeWidth={2} />
+                <span class="brutalist-body">
+                  {contactInfo.location.toUpperCase()}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Social Links -->
+        <div>
+          <h3 class="brutalist-heading-md mb-4">
+            SOCIAL
+          </h3>
+          <div class="space-y-4">
+            <a 
+              href={`https://${contactInfo.linkedin}`} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="block border-brutalist border-background p-3 bg-background text-foreground hover:bg-foreground hover:text-background focus-brutalist"
+            >
+              <div class="flex items-center gap-3">
+                <Linkedin size={20} strokeWidth={2} />
+                <span class="brutalist-body">LINKEDIN PROFILE</span>
+              </div>
+            </a>
+            
+            <a 
+              href="https://github.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="block border-brutalist border-background p-3 bg-background text-foreground hover:bg-foreground hover:text-background focus-brutalist"
+            >
+              <div class="flex items-center gap-3">
+                <Github size={20} strokeWidth={2} />
+                <span class="brutalist-body">GITHUB PROFILE</span>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
-      
-      <div>
-        <h3 class="text-lg font-semibold mb-4">Contact Information</h3>
-        <ul class="space-y-3">
-          <li class="flex items-center">
-            <Icon icon="mdi:email" class="mr-2 text-primary" width="20" height="20" />
-            <a href={`mailto:${contactInfo.email}`} class="hover:text-primary transition-colors">
-              {contactInfo.email}
-            </a>
-          </li>
-          <li class="flex items-start">
-            <Icon icon="mdi:map-marker" class="mr-2 mt-1 text-primary" width="20" height="20" />
-            <span>{contactInfo.location}</span>
-          </li>
-        </ul>
+    </div>
+
+    <!-- Status Block -->
+    <div class="mt-6 border-brutalist border-foreground p-4 bg-background">
+      <div class="text-center space-y-2">
+        <p class="brutalist-small font-bold text-foreground">
+          STATUS: AVAILABLE FOR NEW OPPORTUNITIES
+        </p>
+        <p class="brutalist-small text-foreground">
+          &copy; {currentYear} {fullName.toUpperCase()}. ALL RIGHTS RESERVED.
+        </p>
       </div>
     </div>
-    
-    <div class="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
-      <p>&copy; {currentYear} {fullName}. All rights reserved.</p>
-    </div>
+
   </div>
 </footer>
