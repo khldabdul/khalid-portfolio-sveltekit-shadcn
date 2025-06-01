@@ -52,7 +52,8 @@
             
             <!-- Header Info -->
             <div class="mb-4">
-              <div class="flex items-start justify-between gap-4">
+              <!-- Desktop layout: side by side -->
+              <div class="hidden sm:flex items-start justify-between gap-4">
                 <div class="flex-grow">
                   <h3 class="text-xl font-bold text-foreground mb-2">
                     {exp.position.toUpperCase()}
@@ -66,6 +67,27 @@
                 </div>
                 <div class="flex-shrink-0">
                   <div class="border border-secondary bg-secondary text-secondary-foreground px-3 py-1">
+                    <p class="text-xs font-medium">
+                      {exp.period.toUpperCase()}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Mobile layout: stacked -->
+              <div class="sm:hidden">
+                <h3 class="text-lg font-bold text-foreground mb-2">
+                  {exp.position.toUpperCase()}
+                </h3>
+                <p class="text-base font-medium text-secondary mb-1">
+                  {exp.company.toUpperCase()}
+                </p>
+                <p class="text-sm text-muted-foreground mb-3">
+                  {exp.location}
+                </p>
+                <!-- Date below on mobile -->
+                <div class="inline-block">
+                  <div class="border border-secondary bg-secondary text-secondary-foreground px-2 py-1">
                     <p class="text-xs font-medium">
                       {exp.period.toUpperCase()}
                     </p>
@@ -120,7 +142,7 @@
     <!-- Experience Summary - Amber Accent -->
     <div class="mt-16">
       <div class="border-2 border-secondary bg-secondary text-secondary-foreground p-6">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
           <div class="text-center">
             <p class="text-2xl font-bold">
               {experiences.length}
